@@ -12,3 +12,16 @@ export const getUsersForSidebar = async(req,res) => {
         res.status(500).json({error:"internal server error"});
     }
 }
+
+export const getMessages = async (req,res) => {
+    try{
+        const {id:userToChatId} = req.params;
+        const myId = req.user._id;
+        const Messages = await Message.find({
+            $or: [
+                {senderId: myId, receiverId: userToChatId},
+                {senderId:userToChatId, receiverId:myId}
+            ]
+        })
+    }
+}
