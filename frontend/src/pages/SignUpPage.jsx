@@ -9,7 +9,26 @@ function SignupPage (){
     email:"",
     password:""
   });
-  const {isSigningUp} = useAuthStore();
+  const {isSigningUp,signup} = useAuthStore();
+
+  const validateForm = () => {
+    if (!formData.fullname.trim()) return toast.error("Fullname is required");
+    if (!formData.email.trim()) return toast.error("Email is required");
+    if (!formData.password.trim()) return toast.error("Password is required");
+    if (formData.password.length < 6) return toast.error("Password must have at least 6 characters");
+  
+    return true;
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const success = validateForm();
+
+    if (success === true) {
+      signup(formData);
+    }
+  } 
   return (
     <div>
       <div className='flex flex-col justify-center items-center h-screen'>
