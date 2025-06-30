@@ -12,7 +12,7 @@ import ProfilePage from './pages/ProfilePage.jsx';
 import SettingsPage from './pages/SettingsPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
 
-import Toaster from 'react-hot-toast';
+import {Toaster} from 'react-hot-toast';
 
 import { useAuthStore } from './store/useAuthStore.js';
 function App(){
@@ -32,7 +32,6 @@ function App(){
   }
   return(
     <>
-      <Toaster/>
       <Navbar/> 
       <Routes>
         <Route path='/' element = {authUser ? <HomePage/> : <Navigate to='/login' />} />
@@ -41,6 +40,7 @@ function App(){
         <Route path='/settings' element = {authUser ? <SettingsPage/> : <Navigate to='/login' />} />
         <Route path='/profile' element = {authUser ? <ProfilePage/> : <Navigate to='/login' />} />
       </Routes>
+      <Toaster />
     </>
   );
 }
