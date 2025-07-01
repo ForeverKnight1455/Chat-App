@@ -10,7 +10,7 @@ import HomePage from './pages/Homepage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import SettingsPage from './pages/SettingsPage.jsx';
-import SignupPage from './pages/SignupPage.jsx';
+import SignupPage from './pages/SignUpPage.jsx';
 
 import {Toaster} from 'react-hot-toast';
 

@@ -13,7 +13,7 @@ function SignupPage (){
   const {isSigningUp,signup} = useAuthStore();
 
   const validateForm = () => {
-    if (!formData.fullname.trim()) return toast.error("Fullname is required");
+    if (!formData.fullName.trim()) return toast.error("Fullname is required");
     if (!formData.email.trim()) return toast.error("Email is required");
     if (!formData.password.trim()) return toast.error("Password is required");
     if (formData.password.length < 6) return toast.error("Password must have at least 6 characters");
@@ -21,14 +21,14 @@ function SignupPage (){
   }
 
   const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("form data:",formData);
     const success = validateForm();
     if (success === true) {
       signup(formData);
-      console.log("data handled")
     }
     else{
-      console.log(formData);
-      console.log("data not handled")
+      console.log("formData : ",formData);
     }
     console.log("clicked")
   } 
@@ -44,7 +44,6 @@ function SignupPage (){
           <p className='font-bold text-xl'>Create Account</p>
         </div>
         <form onSubmit={handleSubmit}>
-
         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
 
           <label className="label">name</label>
@@ -53,7 +52,7 @@ function SignupPage (){
               <input 
                 type="text"  
                 placeholder="Name" 
-                onChange={(e) => setformData({...formData, fullname: e.target.value})}
+                onChange={(e) => setformData({...formData, fullName: e.target.value})}
                 />
             </div>
 
@@ -83,7 +82,7 @@ function SignupPage (){
           </button>
         </fieldset>
         </form>
-              <div>{formData.fullname}</div>
+              <div>{formData.fullName}</div>
               <div>{formData.email}</div>
               <div>{formData.password}</div>
         <div className='text-center'>
