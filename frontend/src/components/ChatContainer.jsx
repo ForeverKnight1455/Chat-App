@@ -3,7 +3,7 @@ const ChatContainer = () => {
     <div>
       
     </div>
-  )
+  );
 }
 
 export default ChatContainer
