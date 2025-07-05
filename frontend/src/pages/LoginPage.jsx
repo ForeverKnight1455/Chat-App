@@ -70,8 +70,6 @@ function LoginPage (){
           </button>
         </fieldset>
         </form>
-              <div>{formData.email}</div>
-              <div>{formData.password}</div>
         <div className='text-center'>
           <p className='text-base-content/60'>
             Don't have an account <Link to="/signup" className='link link-primary'>Signup</Link>

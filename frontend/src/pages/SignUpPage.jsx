@@ -82,15 +82,12 @@ function SignupPage (){
           </button>
         </fieldset>
         </form>
-              <div>{formData.fullName}</div>
-              <div>{formData.email}</div>
-              <div>{formData.password}</div>
         <div className='text-center'>
           <p className='text-base-content/60'>
             Already have an account <Link to="/login" className='link link-primary'>Login</Link>
           </p> 
         </div>
-
+        
       </div>
     </div>
   );
