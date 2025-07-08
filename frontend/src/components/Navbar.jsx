@@ -21,7 +21,9 @@ function Navbar(){
                             <a className="btn btn-ghost text-xl"><UserPen /></a>
                         </Link> 
                     : null }
-                    {authUser ? <a className="btn btn-ghost text-xl" onClick={logout}><LogOut /></a> : null}
+                    {authUser ? 
+                        <a className="btn btn-ghost text-xl" onClick={logout}><LogOut /></a> 
+                    : null}
                 </div>
             </div>
         </>

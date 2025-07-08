@@ -1,8 +1,6 @@
 const ChatContainer = () => {
   return (
-    <div>
-      
-    </div>
+    <h1>chat container</h1>
   );
 }
 

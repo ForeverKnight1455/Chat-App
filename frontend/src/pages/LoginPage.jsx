@@ -75,7 +75,6 @@ function LoginPage (){
             Don't have an account <Link to="/signup" className='link link-primary'>Signup</Link>
           </p> 
         </div>
-
       </div>
     </div>
   );

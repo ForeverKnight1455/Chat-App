@@ -1,16 +1,19 @@
 import { useChatStore } from "../store/useChatStore"
 import SidebarSkeleton from "./skeletons/SidebarSkeleton";
-import {Users} from 'lucide-react';
+import { Users } from 'lucide-react';
 
 import { useEffect } from "react";
 const Sidebar = () => {
-    const { getUsers ,users, selectedUser, setselectedUser, isLoadingUsers} = useChatStore();
+    const { getUsers ,users, selectedUser, setSelectedUser, isLoadingUsers} = useChatStore();
 
     const onlineUsers = [];
     useEffect(()=>{
         getUsers()
     },[getUsers]);
 
+    function handleselectedUser(user) {
+        setSelectedUser(user)
+    }
     if(isLoadingUsers) return <SidebarSkeleton/>
   return (
     <aside className="h-full w-20 lg:w-72 border-r border-base-300 flex flex-col transition-all duration-200">
@@ -24,18 +27,18 @@ const Sidebar = () => {
         </div>
 
         <div className="overflow-y-auto w-full py-3">
-            {users.map((user) => {
-                return(
+            {users.map((user,index) =>(
                 <button
-                    key={user.id}
-                    onClick={() => setselectedUser(user)}
-                    className={`w-full p-3 flex items-center gap-3 hover:bg-base-300 transition-colors ${selectedUser ?._id == user._id ? "bg-base-300 ring-1 ring-base-300" : ""}`}
+                    key={index}
+                    onClick={() => handleselectedUser(user)}
+                    className={`w-full p-3 flex items-center gap-3 hover:bg-base-300 transition-colors ${selectedUser===user ? "bg-base-300 ring-1 ring-base-300" : ""}`}
                 >
                     <div className="relative mx-auto lg:mx-0">
+                        
                         <img
                             src={user.profilePic || '/images.png'}
                             alt={user.name}
-                            className="size-12 object-dover rounded-full"
+                            className="size-12 object-cover rounded-full"
                         />
 
                         {onlineUsers.includes(user._id) && (
@@ -49,11 +52,11 @@ const Sidebar = () => {
                         </div>
                     </div>
                 </button>
-                );
-            })}
+                )
+            )}
         </div>
     </aside>
   )
 }
 
-export default Sidebar
+export default Sidebar;
