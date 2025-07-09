@@ -1,15 +1,17 @@
 import {useEffect} from 'react';
 
-import { useChatStore } from '../store/useChatStore';
+import { useChatStore } from '../store/useChatStore.js';
+import {authUser} from '../store/useAuthStore.js';
+
 
 import ChatHeader from './ChatHeader.jsx';
 import MessageInput from './MessageInput.jsx';
 import MessageSkeleton from './skeletons/MessageSkeleton.jsx';
 
 const ChatContainer = () => {
-  const {messages,getMessages,isLoadingMessages,selectedUser} = 
+  const { messages,getMessages,isLoadingMessages,selectedUser } = 
   useChatStore();
-
+  const { authUser } = useAuthStore();
   useEffect(()=>{
     getMessages(selectedUser._id);
   },[selectedUser._id,getMessages]);
@@ -17,7 +19,29 @@ const ChatContainer = () => {
   return (
     <div className='flex-1 flex flex-col overflow-auto'>
       <ChatHeader/>
-       {isLoadingMessages ? <MessageSkeleton/> : ""}
+       <div className='flex-1 overflow-y-auto p-4 space-y-4'>
+          {messages.map((message) => {
+            <div
+              key={message._id}
+              className={`chat ${message.sender._id === authUser._id ? "chat-end" : "chat-start"}`}
+            >
+              <div className='chat-image avatar'>
+                <div className='size-10 rounded-full border'>
+                  <img
+                    src={message.sender._id === authUser._id ? 
+                      authUser.profilePic || '/images.png' : selectedUser.profilePic || '/images.png'}
+                    alt="profile pic"
+                  />
+                </div>
+              </div>
+              <div className='chat-header mb-1'>
+                <time className='text-xs opacity-50 ml-1'>
+                  {message.createdAt}
+                </time>
+              </div>
+            </div>
+          })}
+       </div>
       <MessageInput/>
     </div>
   );
