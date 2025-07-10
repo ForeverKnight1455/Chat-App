@@ -2,8 +2,6 @@
 
 A modern, full-stack real-time chat application built with React, Node.js, Express, and MongoDB. Features include user authentication, real-time messaging, image sharing, and multiple theme options.
 
-![Chat App Banner](./frontend/public/images.png)
-
 ## ✨ Features
 
 - 🔐 **User Authentication** - Secure signup/login with JWT
