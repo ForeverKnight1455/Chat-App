@@ -9,7 +9,7 @@ const Sidebar = () => {
 
     const {onlineUsers} = useAuthStore();
     useEffect(()=>{
-        getUsers()
+        getUsers();
     },[getUsers]);
 
     if(isLoadingUsers) return <SidebarSkeleton/>
@@ -30,7 +30,7 @@ const Sidebar = () => {
                 <button
                     key={index}
                     onClick={() => setSelectedUser(user)}
-                    className={`w-full p-3 flex items-center gap-3 hover:bg-base-300 transition-colors ${selectedUser===user ? "bg-base-300 ring-1 ring-base-300" : ""}`}
+                    className={`w-full p-1 gap-3 hover:bg-base-300 transition-colors ${selectedUser===user ? "bg-base-300 ring-1 ring-base-300" : ""}`}
                 >
                     <div className="relative mx-auto lg:mx-0">
                         <img
