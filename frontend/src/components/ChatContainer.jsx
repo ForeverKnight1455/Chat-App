@@ -3,7 +3,6 @@ import {useEffect} from 'react';
 import { useChatStore } from '../store/useChatStore.js';
 import { useAuthStore } from '../store/useAuthStore.js';
 
-
 import ChatHeader from './ChatHeader.jsx';
 import MessageInput from './MessageInput.jsx';
 import MessageSkeleton from './skeletons/MessageSkeleton.jsx';
@@ -17,7 +16,7 @@ const ChatContainer = () => {
   },[selectedUser._id,getMessages]);
 
   if(isLoadingMessages){
-    return (
+    return (  
       <div className='flex-1 flex flex-col overflow-auto'>
         <ChatHeader/>
         <MessageSkeleton/>
@@ -25,11 +24,11 @@ const ChatContainer = () => {
       </div>
     );
   } 
-
+  
   return (
     <div className='flex-1 flex flex-col overflow-auto'>
       <ChatHeader/>
-       <div className='flex-1 overflow-y-auto p-4 space-y-4'>
+        <div className='flex-1 overflow-y-auto p-4 space-y-4'>
           {messages.map((message) => {
             <div
               key={message._id}
@@ -51,7 +50,7 @@ const ChatContainer = () => {
               </div>
             </div>
           })}
-       </div>
+        </div>
       <MessageInput/>
     </div>
   );

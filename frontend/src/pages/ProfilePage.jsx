@@ -17,7 +17,6 @@ function ProfilePage (){
       setSelectedImage(base64Image);
       await updateProfile({profilePic : base64Image});
     }
-    
   }
   return (
     <>
