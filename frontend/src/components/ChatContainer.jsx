@@ -28,7 +28,7 @@ const ChatContainer = () => {
   return (
     <div className='flex-1 flex flex-col overflow-auto'>
       <ChatHeader/>
-        <div className='flex-1 overflow-y-auto p-4 space-y-4'>
+        <div className='flex-1 overflow-y-auto p-4 space-y-4 overflow-auto'>
           {messages.map((message) => 
             <div
               key={message._id}
@@ -45,7 +45,7 @@ const ChatContainer = () => {
               </div>
               <div className='chat-header mb-1'>
                 <time className='text-xs opacity-50 ml-1'>
-                  {message.createdAt}
+                  {new Date(message.createdAt).toLocaleString()}
                 </time>
               </div>
               <div className='chat-bubble'>
