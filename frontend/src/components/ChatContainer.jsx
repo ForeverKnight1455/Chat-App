@@ -48,7 +48,14 @@ const ChatContainer = () => {
                   {new Date(message.createdAt).toLocaleString()}
                 </time>
               </div>
-              <div className='chat-bubble'>
+              <div className='chat-bubble flex flex-col'>
+                {message.image && (
+                  <img
+                    src={message.image}
+                    alt="attachment"
+                    className='sm:max-w-[200px] rounded-md mb-2'
+                  />
+                )}
                 {message.text}
               </div>
             </div>
