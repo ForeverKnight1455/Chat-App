@@ -22,7 +22,8 @@ export const getMessages = async (req,res) => {
                 {senderId: myId, receiverId: userToChatId},
                 {senderId:userToChatId, receiverId:myId}
             ]
-        })
+        });
+        res.status(200).json(Messages);
     }
     catch(error){
         console.error("error in getMessages controller:", error.message);
@@ -38,7 +39,7 @@ export const sendMessage = async (req,res) => {
         let imageurl;
         if(image){
             const uploadResponse =  await cloudinary.uploader.upload(image);
-           imageurl = uploadResponse.secure_url;
+            imageurl = uploadResponse.secure_url;
         }
 
         const newMessage = new Message({
