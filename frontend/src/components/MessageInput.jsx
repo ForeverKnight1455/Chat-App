@@ -55,7 +55,7 @@ const MessageInput = () => {
               className="w-20 h-20 object-cover rounded-lg border border-zinc-700"
             />
             <button
-              onClick={()=>{removeImage}}
+              onClick={removeImage}
               className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-base-300
               flex items-center justify-center"
               type="button"
@@ -72,7 +72,7 @@ const MessageInput = () => {
                 type='text'
                 className='w-full input input-bordered rounded-lg input-sm sm:input-md'
                 placeholder='type a message'
-                value={text}
+                value = {text || ""}
                 onChange={(e) => setText(e.target.value)}
             />
 
@@ -81,7 +81,7 @@ const MessageInput = () => {
                 accept='image/*'
                 className='hidden'
                 ref={fileInputRef}
-                onChange={handleImageChange}
+                onChange={(e) => {handleImageChange(e)}}
             />
             <button
                 type="button"

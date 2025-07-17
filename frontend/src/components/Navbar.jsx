@@ -8,17 +8,17 @@ function Navbar(){
         <>
             <div className="navbar bg-base-100 shadow-sm flex justify-between items-center">
                 <div>
-                    <Link to="/">
-                        <a className="btn btn-ghost text-xl">Chat.ly</a>
+                    <Link to="/" className="btn btn-ghost text-xl">
+                        Chat.ly
                     </Link>
                 </div>
                 <div>
-                    <Link to="/settings">
-                        <a className="btn btn-ghost text-xl"><Settings /></a>
+                    <Link to="/settings" className="btn btn-ghost text-xl">
+                        <Settings />
                     </Link>
                     {authUser ? 
-                        <Link to='/profile'>
-                            <a className="btn btn-ghost text-xl"><UserPen /></a>
+                        <Link to='/profile' className="btn btn-ghost text-xl">
+                            <UserPen />
                         </Link> 
                     : null }
                     {authUser ? 
