@@ -1,9 +1,10 @@
 import { useAuthStore } from "../store/useAuthStore.js"
 import { Settings,LogOut,UserPen } from 'lucide-react';
 import { Link } from "react-router-dom";
-function Navbar(){
-    const {authUser,logout} = useAuthStore();
 
+function Navbar(){ 
+    const {authUser,logout} = useAuthStore();
+    
     return(
         <>
             <div className="navbar bg-base-100 shadow-sm flex justify-between items-center">

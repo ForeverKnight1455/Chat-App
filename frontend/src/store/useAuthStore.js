@@ -2,16 +2,16 @@ import {create} from 'zustand';
 import {axiosInstance} from '../lib/axiosInstance.js'
 import {toast} from 'react-hot-toast'
 import {io} from "socket.io-client"
-
-const BASE_URL =  `http://localhost:5001`
+const BASE_URL =  `http://localhost:5000`;
 
 export const useAuthStore = create((set,get) => ({
     authUser: null,
     isSigningUp: false,
     isLoggingIn:false,
     isUpdatingProfile:false,
-    onlineUsers:[],
     isCheckingAuth: true,
+    onlineUsers:[],
+    socket: null,
 
     checkAuth: async () => {
         try {
@@ -62,10 +62,12 @@ export const useAuthStore = create((set,get) => ({
         }
     },
 
-    logout: async() => {
+    logout: async () => {
         try{
             const res = await axiosInstance.post("/auth/logout");
-            set({authUser:false});
+            set({authUser:null});
+            toast.success("account logged out successfully");
+            get().disconnectSocket();
         }
         catch(error){
             console.error("error in logout(store):",error);
@@ -96,6 +98,14 @@ export const useAuthStore = create((set,get) => ({
 
         const socket = io(BASE_URL);
         socket.connect();
+
+        set({socket:socket});
     },
-    disconnectSocket : () =>{}
-}))
+
+    disconnectSocket : () =>{
+        if(get().socket?.connected){
+            get().socket.disconnect;
+            set({socket:null});
+        }
+    }
+}));
